@@ -54,7 +54,7 @@ def generate_neighbor(state, step_size):
 
 
 def f(x):
-    return -x**2+4*x  # Define function to find maximum
+    return -(x**2) + 4 * x  # Define function to find maximum
 
 
 if __name__ == '__main__':

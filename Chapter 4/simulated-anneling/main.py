@@ -45,7 +45,7 @@ def generate_neighbor(state, step_size):
 
 
 def f(x):
-    return 1 + 1/4000 * x**2 - np.cos(x / np.sqrt(100))
+    return 1 + 1 / 4000 * x**2 - np.cos(x / np.sqrt(100))
 
 
 if __name__ == '__main__':
