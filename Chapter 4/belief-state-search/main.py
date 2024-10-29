@@ -1,8 +1,5 @@
 def belief_state_search(
-    initial_state,
-    goal_state,
-    belief_state,
-    threshold=0.5
+    initial_state, goal_state, belief_state, threshold=0.5
 ):
     # Start with a set of initial states
     initial_belief_state = {initial_state}
