@@ -15,7 +15,8 @@ Constraints:
 """
 
 from typing import List, Set, Dict, Tuple
-import measure_time
+import timeit
+import numpy as np
 
 
 class SudokuSolver:
@@ -110,7 +111,6 @@ class SudokuSolver:
             key=lambda cell: len(self.domains[cell]),
         )
 
-    @measure_time.timer()
     def backtracking(self) -> bool:
         """
         Solve the Sudoku board using backtracking algorithm
@@ -183,6 +183,9 @@ if __name__ == '__main__':
         solver.print_board()
     else:
         print('No solution exists.')
+
+    time = timeit.repeat(lambda: solver.backtracking(), number=1, repeat=1000)
+    print(f"Time: {np.mean(time):.2e} ± {np.std(time):.2e} seconds")
 
 """ Output
 Solved Sudoku Board:
