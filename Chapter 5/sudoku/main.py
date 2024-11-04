@@ -185,7 +185,7 @@ if __name__ == '__main__':
         print('No solution exists.')
 
     time = timeit.repeat(lambda: solver.backtracking(), number=1, repeat=1000)
-    print(f"Time: {np.mean(time):.2e} ± {np.std(time):.2e} seconds")
+    print(f'Time: {np.mean(time):.2e} ± {np.std(time):.2e} seconds')
 
 """ Output
 Solved Sudoku Board:
