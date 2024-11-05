@@ -2,6 +2,7 @@ import chess
 import chess.engine
 import math
 
+
 def evaluate_board(board):
     """A simple evaluation based on material"""
     piece_values = {
@@ -10,12 +11,18 @@ def evaluate_board(board):
         chess.BISHOP: 3,
         chess.ROOK: 5,
         chess.QUEEN: 9,
-        chess.KING: 0  # King's value is not relevant
+        chess.KING: 0,  # King's value is not relevant
     }
     value = 0
     for piece_type in piece_values:
-        value += len(board.pieces(piece_type, chess.WHITE)) * piece_values[piece_type]
-        value -= len(board.pieces(piece_type, chess.BLACK)) * piece_values[piece_type]
+        value += (
+            len(board.pieces(piece_type, chess.WHITE))
+            * piece_values[piece_type]
+        )
+        value -= (
+            len(board.pieces(piece_type, chess.BLACK))
+            * piece_values[piece_type]
+        )
     return value
 
 
@@ -29,7 +36,9 @@ def minimax(board, depth, is_maximizing, alpha=-math.inf, beta=math.inf):
         best_score = -math.inf
         for move in legal_moves:
             board.push(move)
-            best_score = max(best_score, minimax(board, depth - 1, False, alpha, beta))
+            best_score = max(
+                best_score, minimax(board, depth - 1, False, alpha, beta)
+            )
             board.pop()
             alpha = max(alpha, best_score)
             if beta <= alpha:
@@ -39,7 +48,9 @@ def minimax(board, depth, is_maximizing, alpha=-math.inf, beta=math.inf):
         best_score = math.inf
         for move in board.legal_moves:
             board.push(move)
-            best_score = min(best_score, minimax(board, depth - 1, True, alpha, beta))
+            best_score = min(
+                best_score, minimax(board, depth - 1, True, alpha, beta)
+            )
             board.pop()
             beta = min(beta, best_score)
             if beta <= alpha:
@@ -61,7 +72,7 @@ def find_best_move(board, depth, player):
     return best_move
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     board = chess.Board()
     while not board.is_game_over():
         print(board)
@@ -71,5 +82,5 @@ if __name__ == "__main__":
         else:
             move = find_best_move(board, 10, chess.BLACK)
             board.push(move)
-        input("Press Enter to continue...")
+        input('Press Enter to continue...')
     print(board.result())
